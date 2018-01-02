@@ -27,34 +27,7 @@ android {
         instrumentTest.setRoot('tests')
     }
 
-    buildTypes {
-
-        //rename the .apk file with version name and code
-        applicationVariants.all { variant ->
-            variant.outputs.each { output ->
-                def newApkName = "seekarc-sample-" + output.outputFile.name.replace(".apk", "-" + defaultConfig.versionName + "[" + defaultConfig.versionCode + "].apk")
-                output.outputFile= new File(output.outputFile.parent,newApkName)
-            }
-        }
-
-        debug {
-            debuggable true
-            minifyEnabled false
-            versionNameSuffix 'debug'
-        }
-        release {
-            debuggable false
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-
-    lintOptions {
-          abortOnError false
-    }
 }
-
 dependencies {
     compile project(':SeekArc_library')
     compile "com.android.support:appcompat-v7:23.0.1"
